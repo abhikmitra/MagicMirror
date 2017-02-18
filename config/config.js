@@ -14,7 +14,8 @@ var config = {
 
 	modules: [
 		{
-			module: 'alert',
+			module: 'triggerhack',
+			position: "top_bar"
 		},
 		{
 			module: "updatenotification",
