@@ -12,6 +12,30 @@ module.exports = NodeHelper.create({
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === "LISTEN_SOCKET") {
 			this.listenOnSocketForMessageFromPi(payload.ip, payload.port)
+			var self = this;
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					type: "MIRROR_START"
+				})
+			}, 10000);
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					type: "MIRROR_LISTEN"
+				})
+			}, 12000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					type: "FLOOR",
+					payload: " 5 , INOX"
+				})
+			}, 16000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					type: "DEMO_2",
+				})
+			}, 30000);
 		}	
 	},
 
@@ -30,6 +54,40 @@ module.exports = NodeHelper.create({
 	},
 
 	onReceiveDataFromPi: function onReceiveDataFromPi(message) {
+
+		if (message.type == "MIRROR_START") {
+			// switch on the mirror
+			console.log("STRATING THE MIRROR")
+			this.sendSocketNotification("START_MIRROR", {
+					
+			});
+		}
+
+		if (message.type == "MIRROR_LISTEN") {
+			// switch on the mirror
+			console.log("Changing THE MIRROR  listening gif")
+			this.sendSocketNotification("MIRROR_LISTEN", {
+					
+			});
+		}
+
+		if (message.type == "FLOOR") {
+			// switch on the mirror
+			console.log("Changing THE FLOOR")
+			this.sendSocketNotification("FLOOR", {
+					payload : message.payload
+			});
+		}
+
+		if (message.type == "DEMO_2") {
+			// switch on the mirror
+			console.log("Starting DEMO 2")
+			this.sendSocketNotification("DEMO_2", {
+					
+			});
+		}
+
+		return;
 		var detected = "NONE"
 		console.log("message.identities", message.identities)
 		if (!message.identities.length) {

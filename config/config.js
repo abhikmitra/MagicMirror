@@ -15,40 +15,27 @@ var config = {
 	modules: [
 		{
 			module: 'triggerhack',
-			position: "top_bar"
+			position: "top_ bar"
 		},
 		{
-			module: "updatenotification",
-			position: "top_bar"
+			module: 'showtimings',
+			position: "middle_center",
+		},
+		{
+			module: 'welcome',
+			position: "middle_center",
 		},
 		{
 			module: 'clock',
 			position: 'top_left'
 		},
 		{
-			module: 'calendar',
-			header: 'US Holidays',
+			module: 'currentweather',
 			position: 'top_left',
 			config: {
-				calendars: [
-					{
-						symbol: 'calendar-check-o ',
-						url: 'webcal://www.calendarlabs.com/templates/ical/US-Holidays.ics'
-					}
-				]
-			}
-		},
-		{
-			module: 'compliments',
-			position: 'lower_third'
-		},
-		{
-			module: 'currentweather',
-			position: 'top_right',
-			config: {
-				location: 'New York',
+				location: 'Bangalore',
 				locationID: '',  //ID from http://www.openweathermap.org
-				appid: 'YOUR_OPENWEATHER_API_KEY'
+				appid: '5ad59b5e1f16d86f53c1667a7cb9d0ed'
 			}
 		},
 		{
@@ -56,9 +43,9 @@ var config = {
 			position: 'top_right',
 			header: 'Weather Forecast',
 			config: {
-				location: 'New York',
-				locationID: '5128581',  //ID from http://www.openweathermap.org
-				appid: 'YOUR_OPENWEATHER_API_KEY'
+				location: 'Bangalore',
+				locationID: '',  //ID from http://www.openweathermap.org
+				appid: '5ad59b5e1f16d86f53c1667a7cb9d0ed'
 			}
 		},
 		{

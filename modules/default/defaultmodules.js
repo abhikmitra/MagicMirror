@@ -17,7 +17,9 @@ var defaultModules = [
 	"newsfeed",
 	"weatherforecast",
 	"updatenotification",
-	"triggerhack"
+	"triggerhack",
+	"showtimings",
+	"welcome"
 ];
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/

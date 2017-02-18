@@ -1,14 +1,15 @@
 Module.register("triggerhack",{
 	defaults: {
-		customText: "Hello World!"
+		customText: "Smart Elevator!"
 	},
 	getDom: function() {
 		var wrapper = document.createElement("div");
 		if(this.isStopped) {
 			wrapper.innerHTML = "";	
 		} else {
-			wrapper.innerHTML =  "Welcome " + this.config.customText ;			
-		}					
+			wrapper.innerHTML =  "Smart Elevator";
+		}
+		wrapper.className= "bright xlarge wrapper"					
 		return wrapper;
 	},
 	start: function() {
@@ -17,23 +18,69 @@ Module.register("triggerhack",{
 			ip: "192.175.5.182",
 			port:"5005"
 		});
-		this.isStopped = true;
+
+		var self = this;
+		setTimeout(function(){
+				self.sendNotification("STOP_MIRROR", {
+					name: "NONE"
+				});
+				self.stopModule();
+		}, 5000);
+		// setTimeout(function(){
+		// 		self.sendNotification("START_MIRROR", {
+		// 			name: "NONE"
+		// 		});
+		// 		self.startModule();
+		// }, 20000);
+	},
+	getStyles: function () {
+		return ["style.css", "font-awesome.css"];
 	},
 	stopModule: function() {
-		if(this.isStopped) {
-			return;
-		}
-		this.isStopped = true;
-		this.updateDom()
+		this.hide(2000);
+		this.updateDom();
 	},
 	startModule: function() {
-		if(!this.isStopped) {
-			return;
-		}
-		this.isStopped = false;
-		this.updateDom()
+		this.show(2000);
+		this.updateDom();
+
 	},
-	socketNotificationReceived: function(notification, payload) {
+	socketNotificationReceived:  function(notification, payload) {
+		if (notification === "STOP_MIRROR") {
+			console.log("stopping mirror");
+			this.sendNotification("STOP_MIRROR", {
+					name: "NONE"
+			});
+			this.stopModule();
+		}
+
+		if (notification === "START_MIRROR") {
+			console.log("starting mirror");
+			this.sendNotification("START_MIRROR", {
+					name: "NONE"
+			});
+			this.startModule();
+		}	
+
+		if (notification === "MIRROR_LISTEN") {
+			this.sendNotification("MIRROR_LISTEN", {
+					
+			});
+		}
+
+		if (notification === "FLOOR") {
+			this.sendNotification("FLOOR", {
+					payload: payload.payload
+			});
+		}
+
+		if (notification === "DEMO_2") {
+			this.sendNotification("DEMO_2", {
+					
+			});
+		}
+	},
+	notificationReceived: function(notification, payload) {
 		if (notification === "STOP_MIRROR") {
 			console.log("stopping mirror");
 			this.stopModule();

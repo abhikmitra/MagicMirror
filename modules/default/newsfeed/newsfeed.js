@@ -59,9 +59,30 @@ Module.register("newsfeed",{
 		this.registerFeeds();
 
 	},
+	stopModule: function() {
+		
+		this.hide(2000);
+	},
+	startModule: function() {
+		
+		this.show(2000);
+	},
+	notificationReceived: function(notification, payload) {
+		if (notification === "STOP_MIRROR") {
+			console.log("stopping newsfeed");
+			this.stopModule();
+		}
 
+		if (notification === "START_MIRROR") {
+			this.config.customText = payload.name
+			console.log("starting newsfeed");
+			this.startModule();
+		}	
+	},
 	// Override socket notification handler.
 	socketNotificationReceived: function(notification, payload) {
+		
+
 		if (notification === "NEWS_ITEMS") {
 			this.generateFeed(payload);
 
@@ -76,7 +97,10 @@ Module.register("newsfeed",{
 	// Override dom generator.
 	getDom: function() {
 		var wrapper = document.createElement("div");
-
+		if (this.isStopped) {
+			wrapper.innerHTML = "";	
+			return wrapper; 
+		}
 		if (this.config.feedUrl) {
 			wrapper.className = "small bright";
 			wrapper.innerHTML = "The configuration options for the newsfeed module have changed.<br>Please check the documentation.";

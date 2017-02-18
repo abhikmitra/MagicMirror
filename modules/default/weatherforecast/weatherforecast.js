@@ -94,12 +94,16 @@ Module.register("weatherforecast",{
 		this.scheduleUpdate(this.config.initialLoadDelay);
 
 		this.updateTimer = null;
-
+		this.hidden = true;
 	},
 
 	// Override dom generator.
 	getDom: function() {
 		var wrapper = document.createElement("div");
+		// if (this.isStopped) {
+		// 	wrapper.innerHTML = "";	
+		// 	return wrapper; 
+		// }
 
 		if (this.config.appid === "") {
 			wrapper.innerHTML = "Please set the correct openweather <i>appid</i> in the config for module: " + this.name + ".";
@@ -181,9 +185,28 @@ Module.register("weatherforecast",{
 
 		return this.data.header;
 	},
+	stopModule: function() {
+		
+		this.hide(2000);
+	},
+	startModule: function() {
+		
+		this.show(2000);
+	},
 
 	// Override notification handler.
 	notificationReceived: function(notification, payload, sender) {
+
+		if (notification === "STOP_MIRROR") {
+			console.log("stopping forecast");
+			this.stopModule();
+		}
+
+		if (notification === "START_MIRROR") {
+			this.config.customText = payload.name
+			console.log("starting forecast");
+			this.startModule();
+		}	
 		if (notification === "DOM_OBJECTS_CREATED") {
 			if (this.config.appendLocationNameToHeader) {
 				this.hide(0, {lockString: this.identifier});
