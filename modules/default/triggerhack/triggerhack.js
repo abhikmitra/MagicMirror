@@ -16,7 +16,7 @@ Module.register("triggerhack",{
 		Log.log("Starting module: " + this.name);
 		this.sendSocketNotification("LISTEN_SOCKET", {
 			ip: "192.175.5.182",
-			port:"5005"
+			port:"5006"
 		});
 
 		var self = this;
