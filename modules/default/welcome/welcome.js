@@ -73,7 +73,7 @@ Module.register("welcome",{
 				this.updateDom(600);
 				var self = this;
 				setTimeout(function(){
-					self.html = "<div class='wrapper'><img src='"+ "http://palcity2.com/assets/images/kat-planlari/21-ust-katlar.jpg" +"'></div>"
+					self.html = "<div class='wrapper'><img src='"+ "https://s4.postimg.org/rls5esbwt/Interview.jpg" +"'></div>"
 					self.updateDom(600);
 				}, 2500)
 				

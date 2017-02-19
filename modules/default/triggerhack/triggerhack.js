@@ -79,6 +79,15 @@ Module.register("triggerhack",{
 					
 			});
 		}
+
+		if (notification === "RESET") {
+			this.sendNotification("RESET", {
+				this.sendNotification("STOP_MIRROR", {
+					name: "NONE"
+				});
+				self.stopModule();
+			});
+		}
 	},
 	notificationReceived: function(notification, payload) {
 		if (notification === "STOP_MIRROR") {

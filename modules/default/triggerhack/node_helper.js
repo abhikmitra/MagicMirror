@@ -88,6 +88,14 @@ module.exports = NodeHelper.create({
 			});
 		}
 
+		if (message.TYPE == "RESET") {
+			// switch on the mirror
+			console.log("RESET")
+			this.sendSocketNotification("RESET", {
+					
+			});
+		}
+
 		return;
 		var detected = "NONE"
 		console.log("message.identities", message.identities)
