@@ -15,7 +15,7 @@ Module.register("welcome",{
 		});
 
 		var self = this;
-		this.html = "<div class='wrapper bright xlarge wrapper'> Welcome <br> Which floor do you want to go ? </div>";
+		this.html = "<div class='wrapper bright xlarge wrapper'> Welcome <br> Which floor do you wish to go ? </div>";
 	},
 	getStyles: function () {
 		return ["style.css", "font-awesome.css"];
@@ -34,7 +34,7 @@ Module.register("welcome",{
 			console.log("stopping mirror");
 			this.stopModule();
 
-			this.html = "<div class='wrapper bright xlarge wrapper'> Welcome <br> Which floor do you want to go ? </div>";
+			this.html = "<div class='wrapper bright xlarge wrapper'> Welcome <br> Which floor do you wish to go ? </div>";
 		}
 
 		if (notification === "START_MIRROR") {
