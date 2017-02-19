@@ -81,12 +81,10 @@ Module.register("triggerhack",{
 		}
 
 		if (notification === "RESET") {
-			this.sendNotification("RESET", {
-				this.sendNotification("STOP_MIRROR", {
+			this.sendNotification("STOP_MIRROR", {
 					name: "NONE"
-				});
-				self.stopModule();
 			});
+			self.stopModule();
 		}
 	},
 	notificationReceived: function(notification, payload) {
