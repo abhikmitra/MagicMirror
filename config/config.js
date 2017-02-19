@@ -27,7 +27,8 @@ var config = {
 		},
 		{
 			module: 'clock',
-			position: 'top_left'
+			position: 'top_left',
+			timezone: 'Asia/Kolkata'
 		},
 		{
 			module: 'currentweather',

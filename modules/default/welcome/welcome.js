@@ -68,8 +68,8 @@ Module.register("welcome",{
 		if (notification === "DEMO_2") {
 				this.startModule();
 				this.html = "<div class='wrapper'>" + 
-				" <span class='bright large wrapper'>Hi Nikhil , your interviewer is ready </span>"+
-				" <br/> <span class='medium wrapper'> All the best! </span></div>";
+				" <span class='bright large wrapper'>Hi Nikhil , taking you to floor 13</span>"+
+				" <br/> <span class='medium wrapper'> All the best for your Interview! </span></div>";
 				this.updateDom(600);
 				var self = this;
 				setTimeout(function(){

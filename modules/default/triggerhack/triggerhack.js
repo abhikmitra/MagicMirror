@@ -84,7 +84,7 @@ Module.register("triggerhack",{
 			this.sendNotification("STOP_MIRROR", {
 					name: "NONE"
 			});
-			self.stopModule();
+			this.stopModule();
 		}
 	},
 	notificationReceived: function(notification, payload) {
