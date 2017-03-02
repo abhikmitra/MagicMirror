@@ -36,6 +36,7 @@
     "time-grunt": "latest"
   },
   "dependencies": {
+    "chart.js": "^2.5.0",
     "electron": "^1.4.7",
     "express": "^4.14.0",
     "express-ipfilter": "latest",
@@ -43,10 +44,11 @@
     "helmet": "^3.1.0",
     "iconv-lite": "latest",
     "moment": "latest",
+    "nodejs-websocket": "^1.7.1",
     "request": "^2.78.0",
     "rrule": "latest",
     "simple-git": "^1.62.0",
-    "socket.io": "^1.5.1",
+    "socket.io": "^1.7.3",
     "valid-url": "latest",
     "walk": "latest"
   }

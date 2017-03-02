@@ -7,6 +7,10 @@ Module.register("welcome",{
 		wrapper.innerHTML = this.html;					
 		return wrapper;
 	},
+	state: {
+		doorOpen: "false",
+		state: "stopped",
+	},
 	start: function() {
 		Log.log("Starting module: " + this.name);
 		this.sendSocketNotification("LISTEN_SOCKET", {
@@ -29,7 +33,37 @@ Module.register("welcome",{
 		this.updateDom();
 
 	},
+	hasStateChanged: function (payload) {
+		if (payload.doorOpen != this.state.doorOpen) {
+			return true;
+		}
+
+		if (payload.state != this.state.state) {
+			return true;
+		}
+
+		return false
+
+
+	},
 	notificationReceived: function(notification, payload) {
+
+
+		if (notification == "KONE_API") {
+			if (!this.hasStateChanged(payload)) {
+				return;
+			}
+			if (payload.state === "idle") {
+				this.stopModule();
+			}
+			else if (payload.doorOpen) {
+				console.log("starting which floor you want to go scenario ?");
+				this.startModule();
+			} else {
+				this.stopModule();
+			}
+		}
+
 		if (notification === "STOP_MIRROR") {
 			console.log("stopping mirror");
 			this.stopModule();

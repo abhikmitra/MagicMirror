@@ -68,6 +68,20 @@ Module.register("newsfeed",{
 		this.show(2000);
 	},
 	notificationReceived: function(notification, payload) {
+
+		if (notification == "KONE_API") {
+			if (payload.doorOpen) {
+				console.log("starting forecast");
+				this.startModule();
+			} else if (!payload.doorOpen && payload.state == "moving") {
+				console.log("starting forecast");
+				this.startModule();
+			} else {
+				console.log("stopping forecast");
+				this.stopModule();
+			}
+		}
+
 		if (notification === "STOP_MIRROR") {
 			console.log("stopping newsfeed");
 			this.stopModule();

@@ -197,6 +197,20 @@ Module.register("weatherforecast",{
 	// Override notification handler.
 	notificationReceived: function(notification, payload, sender) {
 
+		if (notification == "KONE_API") {
+			if (payload.doorOpen) {
+				console.log("starting forecast");
+				this.startModule();
+			} else if (!payload.doorOpen && payload.state == "moving") {
+				console.log("starting forecast");
+				this.startModule();
+			} else {
+				console.log("stopping forecast");
+				this.stopModule();
+			}
+		}
+
+
 		if (notification === "STOP_MIRROR") {
 			console.log("stopping forecast");
 			this.stopModule();
@@ -324,7 +338,7 @@ Module.register("weatherforecast",{
 		}
 
 		//Log.log(this.forecast);
-		this.show(this.config.animationSpeed, {lockString:this.identifier});
+		//this.show(this.config.animationSpeed, {lockString:this.identifier});
 		this.loaded = true;
 		this.updateDom(this.config.animationSpeed);
 	},

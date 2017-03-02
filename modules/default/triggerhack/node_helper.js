@@ -5,41 +5,87 @@ var detectedPeople = [
 	"SHABAZ",
 	"NIKHIL",
 	"UNKNOWN",
-]
+];
+
+var ws = require("nodejs-websocket");
+
 detectedPeople[-1] = "UNKNOWN";
 var queue = [];
 module.exports = NodeHelper.create({
 	socketNotificationReceived: function(notification, payload) {
 		if (notification === "LISTEN_SOCKET") {
-			this.listenOnSocketForMessageFromPi(payload.ip, payload.port)
+			this.listenForSocketFromElevator(payload.port)
 			var self = this;
-			return;
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "MIRROR_START"
-				})
-			}, 10000);
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "MIRROR_LISTEN"
-				})
-			}, 12000);
+			// return;
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "MIRROR_START"
+			// 	})
+			// }, 10000);
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "MIRROR_LISTEN"
+			// 	})
+			// }, 12000);
+            //
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "FLOOR",
+			// 		PAYLOAD: " 5 , INOX"
+			// 	})
+			// }, 16000);
+            //
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "DEMO_2",
+			// 	})
+			// }, 30000);
 
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "FLOOR",
-					PAYLOAD: " 5 , INOX"
-				})
-			}, 16000);
 
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "DEMO_2",
-				})
-			}, 30000);
+
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromKoneAPI({
+			// 		TYPE: "KONE_API",
+			// 		"motorTemp": 155.3793,
+			// 		"currentFloor": 0,
+			// 		"doorOpen": false,
+			// 		"state": "stopped",
+			// 		"numberOfFloors": 6,
+			// 		"cabinTemp": 82,
+			// 		"cabinSpeed": 4,
+			// 		"direction": 1,
+			// 		"load": 0,
+			// 		"curtainOfLightBreak": 0,
+			// 		"cleanessOfFloor": 1
+			// 	});
+			// }, 5000);
+
+
 		}	
 	},
+	onReceiveDataFromKoneAPI: function (data) {
+		var json = JSON.parse(data);
+		console.log("sending KONE API message", json.TYPE);
+		this.sendSocketNotification(json.TYPE, json);
+	},
+	listenForSocketFromElevator: function(port) {
+		var self = this;
+		this.server = ws.createServer(function (conn) {
+			console.log("New connection")
+			conn.on("text", function (str) {
+				console.log("Received "+ str)
 
+
+				self.onReceiveDataFromKoneAPI(str);
+
+
+
+			})
+			conn.on("close", function (code, reason) {
+				console.log("Connection closed")
+			})
+		}).listen(port)
+	},
 	listenOnSocketForMessageFromPi: function(ip, port) {
 		var self = this;
 		server.on('listening', function () {

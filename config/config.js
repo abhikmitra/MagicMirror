@@ -17,10 +17,10 @@ var config = {
 			module: 'triggerhack',
 			position: "top_ bar"
 		},
-		{
-			module: 'showtimings',
-			position: "middle_center",
-		},
+		// {
+		// 	module: 'showtimings',
+		// 	position: "middle_center",
+		// },
 		{
 			module: 'welcome',
 			position: "middle_center",
@@ -50,19 +50,26 @@ var config = {
 			}
 		},
 		{
-			module: 'newsfeed',
-			position: 'bottom_bar',
+			module: 'floor',
+			position: 'top_right',
 			config: {
-				feeds: [
-					{
-						title: "New York Times",
-						url: "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"
-					}
-				],
-				showSourceTitle: true,
-				showPublishDate: true
+
 			}
-		},
+		}
+		// {
+		// 	module: 'newsfeed',
+		// 	position: 'bottom_bar',
+		// 	config: {
+		// 		feeds: [
+		// 			{
+		// 				title: "New York Times",
+		// 				url: "http://www.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+		// 			}
+		// 		],
+		// 		showSourceTitle: true,
+		// 		showPublishDate: true
+		// 	}
+		// },
 	]
 
 };

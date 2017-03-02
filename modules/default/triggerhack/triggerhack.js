@@ -25,7 +25,7 @@ Module.register("triggerhack",{
 					name: "NONE"
 				});
 				self.stopModule();
-		}, 5000);
+		}, 1000);
 		// setTimeout(function(){
 		// 		self.sendNotification("START_MIRROR", {
 		// 			name: "NONE"
@@ -46,6 +46,8 @@ Module.register("triggerhack",{
 
 	},
 	socketNotificationReceived:  function(notification, payload) {
+
+
 		if (notification === "STOP_MIRROR") {
 			console.log("stopping mirror");
 			this.sendNotification("STOP_MIRROR", {
@@ -85,6 +87,25 @@ Module.register("triggerhack",{
 					name: "NONE"
 			});
 			this.stopModule();
+		}
+
+		if (notification === "KONE_API") {
+			this.sendNotification("KONE_API", payload);
+
+			if (payload.doorOpen) {
+				console.log("starting which floor you want to go scenario ?");
+				this.startModule();
+			} else if (!payload.doorOpen && payload.state == "moving") {
+				console.log("starting moving scenario");
+				this.startModule();
+			} else {
+				console.log("stopping forecast");
+				this.stopModule();
+			}
+		}
+
+		if (notification === "FLOOR_SELECTED") {
+			this.sendNotification("FLOOR_SELECTED", payload);
 		}
 	},
 	notificationReceived: function(notification, payload) {

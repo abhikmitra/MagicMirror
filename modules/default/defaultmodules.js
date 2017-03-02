@@ -19,7 +19,10 @@ var defaultModules = [
 	"updatenotification",
 	"triggerhack",
 	"showtimings",
-	"welcome"
+	"welcome",
+	"webbrowser",
+	"dynchart",
+	"floor"
 ];
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
