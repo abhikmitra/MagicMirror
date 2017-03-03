@@ -17,6 +17,7 @@ var config = {
 			module: 'triggerhack',
 			position: "top_ bar"
 		},
+			
 		{
 			module: 'showtimings',
 			position: "middle_center",
@@ -24,6 +25,25 @@ var config = {
 		{
 			module: 'welcome',
 			position: "middle_center",
+		},
+		{
+			module: 'dynchart',
+			position: "top_left",
+		},
+
+		{
+			module: 'dynchart2',
+			position: "bottom_right",
+		},
+
+		{
+			module: 'dynchart3',
+			position: "bottom_left",
+		},
+
+		{
+			module: 'dynchart4',
+			position: "top_right",
 		},
 		{
 			module: 'clock',

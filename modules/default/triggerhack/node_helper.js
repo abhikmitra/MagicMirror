@@ -45,6 +45,18 @@ module.exports = NodeHelper.create({
 					TYPE: "DEMO_2",
 				})
 			}, 30000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					TYPE: "DEMO_3",
+				})
+			}, 35000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					TYPE: "RESET",
+				})
+			}, 40000);
 		}	
 	},
 
@@ -93,6 +105,14 @@ module.exports = NodeHelper.create({
 			console.log("Starting DEMO 2")
 			this.sendSocketNotification("DEMO_2", {
 					
+			});
+		}
+
+		if (message.TYPE == "DEMO_3") {
+			// switch on the mirror
+			console.log("Starting DEMO 3")
+			this.sendSocketNotification("DEMO_3", {
+
 			});
 		}
 

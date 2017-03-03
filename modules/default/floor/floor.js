@@ -76,10 +76,13 @@ Module.register("floor", {
 
             this.currentFloor = null;
             this.floors = [];
+            this.show(500)
             this.updateDom();
 
         }
 
-
+        if (notification == "DEMO_3") {
+            this.hide(500);
+        }
     }
 });

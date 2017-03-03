@@ -5,11 +5,11 @@ Module.register("triggerhack",{
 	getDom: function() {
 		var wrapper = document.createElement("div");
 		if(this.isStopped) {
-			wrapper.innerHTML = "";	
+			wrapper.innerHTML = "";
 		} else {
 			wrapper.innerHTML =  "Smart Elevator";
 		}
-		wrapper.className= "bright xlarge wrapper"					
+		wrapper.className= "bright xlarge wrapper"
 		return wrapper;
 	},
 	start: function() {
@@ -60,11 +60,11 @@ Module.register("triggerhack",{
 					name: "NONE"
 			});
 			this.startModule();
-		}	
+		}
 
 		if (notification === "MIRROR_LISTEN") {
 			this.sendNotification("MIRROR_LISTEN", {
-					
+
 			});
 		}
 
@@ -76,7 +76,15 @@ Module.register("triggerhack",{
 
 		if (notification === "DEMO_2") {
 			this.sendNotification("DEMO_2", {
-					
+
+			});
+		}
+
+		if (notification === "DEMO_3") {
+			this.sendNotification("STOP_MIRROR", {
+				name: "NONE"
+			});
+			this.sendNotification("DEMO_3", {
 			});
 		}
 
@@ -100,7 +108,7 @@ Module.register("triggerhack",{
 			this.config.customText = payload.name
 			console.log("starting mirror");
 			this.startModule();
-		}	
+		}
 	},
 
 

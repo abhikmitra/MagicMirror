@@ -20,7 +20,11 @@ var defaultModules = [
 	"triggerhack",
 	"showtimings",
 	"welcome",
-	"floor"
+	"floor",
+	"dynchart",
+	"dynchart2",
+	"dynchart3",
+	"dynchart4"
 ];
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
