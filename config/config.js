@@ -34,17 +34,16 @@ var config = {
 			module: 'currentweather',
 			position: 'top_left',
 			config: {
-				location: 'Bangalore',
+				location: 'Chennai',
 				locationID: '',  //ID from http://www.openweathermap.org
 				appid: '5ad59b5e1f16d86f53c1667a7cb9d0ed'
 			}
 		},
 		{
-			module: 'weatherforecast',
+			module: 'floor',
 			position: 'top_right',
-			header: 'Weather Forecast',
 			config: {
-				location: 'Bangalore',
+				location: 'Chennai',
 				locationID: '',  //ID from http://www.openweathermap.org
 				appid: '5ad59b5e1f16d86f53c1667a7cb9d0ed'
 			}

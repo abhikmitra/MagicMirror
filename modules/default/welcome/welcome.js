@@ -52,7 +52,7 @@ Module.register("welcome",{
 
 		if (notification === "FLOOR") {
 			
-			this.html = "<div class='wrapper bright large wrapper'>Taking you to floor " + payload.payload + "</div>"
+			this.html = "<div class='wrapper bright large wrapper'>" + payload.payload.MSG + "</div>"
 			this.updateDom(600);
 
 			var self = this;

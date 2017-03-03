@@ -15,7 +15,7 @@ Module.register("triggerhack",{
 	start: function() {
 		Log.log("Starting module: " + this.name);
 		this.sendSocketNotification("LISTEN_SOCKET", {
-			ip: "192.175.5.182",
+			ip: "172.31.176.198",
 			port:"5006"
 		});
 
@@ -83,6 +83,9 @@ Module.register("triggerhack",{
 		if (notification === "RESET") {
 			this.sendNotification("STOP_MIRROR", {
 					name: "NONE"
+			});
+			this.sendNotification("RESET", {
+				name: "NONE"
 			});
 			this.stopModule();
 		}

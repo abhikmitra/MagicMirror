@@ -19,7 +19,8 @@ var defaultModules = [
 	"updatenotification",
 	"triggerhack",
 	"showtimings",
-	"welcome"
+	"welcome",
+	"floor"
 ];
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/

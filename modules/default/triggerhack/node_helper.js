@@ -6,6 +6,7 @@ var detectedPeople = [
 	"NIKHIL",
 	"UNKNOWN",
 ]
+var say = require('say');
 detectedPeople[-1] = "UNKNOWN";
 var queue = [];
 module.exports = NodeHelper.create({
@@ -19,18 +20,25 @@ module.exports = NodeHelper.create({
 					TYPE: "MIRROR_START"
 				})
 			}, 10000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					TYPE: "READ_OUT",
+					PAYLOAD: "Which floor do you wish to go ?"
+				})
+			}, 11000);
 			setTimeout(function() {
 				self.onReceiveDataFromPi({
 					TYPE: "MIRROR_LISTEN"
 				})
-			}, 12000);
+			}, 13000);
 
 			setTimeout(function() {
 				self.onReceiveDataFromPi({
 					TYPE: "FLOOR",
 					PAYLOAD: " 5 , INOX"
 				})
-			}, 16000);
+			}, 17000);
 
 			setTimeout(function() {
 				self.onReceiveDataFromPi({
@@ -48,7 +56,7 @@ module.exports = NodeHelper.create({
 		});
 		server.on('message', function (message, remote) {
     		console.log(remote.address + ':' + remote.port +' - ' + message);
-    		self.onReceiveDataFromPi(JSON.parse(message))
+    		self.onReceiveDataFromPi(JSON.parse(message));
 		});
 
 		server.bind(port, ip);
@@ -94,6 +102,29 @@ module.exports = NodeHelper.create({
 			this.sendSocketNotification("RESET", {
 					
 			});
+		}
+
+		if (message.TYPE == "READ_OUT") {
+			// switch on the mirror
+			// console.log("READ_OUT", message.PAYLOAD);
+			// say.speak(message.PAYLOAD, 'Good News', 1.0, function(err) {
+			// 	if (err) {
+			// 		return console.error(err);
+			// 	}
+            //
+			// 	console.log('Text has been spoken.');
+			// });
+
+			var exec = require('child_process').exec;
+			var cmd = 'flite -t ' + '"message.PAYLOAD"';
+			console.log('Hello',cmd);
+			exec(cmd, function(error, stdout, stderr) {
+				console.log('std',stdout);
+				console.log('err',error);
+				// command output is in stdout
+			});
+
+
 		}
 
 		return;
