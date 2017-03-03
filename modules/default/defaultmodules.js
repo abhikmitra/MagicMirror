@@ -20,8 +20,7 @@ var defaultModules = [
 	"triggerhack",
 	"showtimings",
 	"welcome",
-	"floor",
-	"MMM-TTS"
+	"floor"
 ];
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/

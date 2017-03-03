@@ -80,11 +80,6 @@ Module.register("triggerhack",{
 			});
 		}
 
-		if (notification === "READ_OUT") {
-			console.log("READing out through module", message.PAYLOAD);
-			this.sendNotification("MMM-TTS", 'This is a text to read. Hello World!');
-		}
-
 		if (notification === "RESET") {
 			this.sendNotification("STOP_MIRROR", {
 					name: "NONE"

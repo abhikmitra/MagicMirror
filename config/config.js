@@ -47,12 +47,6 @@ var config = {
 				locationID: '',  //ID from http://www.openweathermap.org
 				appid: '5ad59b5e1f16d86f53c1667a7cb9d0ed'
 			}
-		},{
-			module: 'MMM-TTS',
-			position: 'top_right',
-			config: {
-				
-			}
 		},
 		{
 			module: 'newsfeed',
