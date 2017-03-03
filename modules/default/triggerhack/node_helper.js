@@ -115,7 +115,7 @@ module.exports = NodeHelper.create({
             //
 			// 	console.log('Text has been spoken.');
 			// });
-
+			this.sendSocketNotification("READ_OUT",  message.PAYLOAD);
 			var exec = require('child_process').exec;
 			var cmd = 'flite -t ' + '"' + message.PAYLOAD + '"';
 			console.log('Hello',cmd);
