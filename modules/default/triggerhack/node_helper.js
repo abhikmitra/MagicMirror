@@ -137,8 +137,8 @@ module.exports = NodeHelper.create({
 			// });
 			this.sendSocketNotification("READ_OUT",  message.PAYLOAD);
 			var exec = require('child_process').exec;
-			var cmd = 'flite -t ' + '"' + message.PAYLOAD + '"';
-			console.log('Hello',cmd);
+			var cmd = 'flite -voice -slt -t' + '"' + message.PAYLOAD.replace("!", "") + '"';
+			console.log('Executing cmd',cmd);
 			exec(cmd, function(error, stdout, stderr) {
 				console.log('std',stdout);
 				console.log('err',error);
