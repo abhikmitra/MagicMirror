@@ -117,7 +117,7 @@ module.exports = NodeHelper.create({
 			// });
 
 			var exec = require('child_process').exec;
-			var cmd = 'flite -t ' + '"message.PAYLOAD"';
+			var cmd = 'flite -t ' + '"' + message.PAYLOAD + '"';
 			console.log('Hello',cmd);
 			exec(cmd, function(error, stdout, stderr) {
 				console.log('std',stdout);
