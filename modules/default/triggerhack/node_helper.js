@@ -105,6 +105,7 @@ module.exports = NodeHelper.create({
 		}
 
 		if (message.TYPE == "READ_OUT") {
+			console.log("READ_OUT", message.PAYLOAD);
 			// switch on the mirror
 			// console.log("READ_OUT", message.PAYLOAD);
 			// say.speak(message.PAYLOAD, 'Good News', 1.0, function(err) {
