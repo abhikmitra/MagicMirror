@@ -14,6 +14,20 @@ module.exports = NodeHelper.create({
 		if (notification === "LISTEN_SOCKET") {
 			this.listenOnSocketForMessageFromPi(payload.ip, payload.port)
 			var self = this;
+			//return;
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					TYPE: "DEMO_3",
+				})
+			}, 10000);
+
+			setTimeout(function() {
+				self.onReceiveDataFromPi({
+					TYPE: "RESET",
+				})
+			}, 20000);
+
 			return;
 			setTimeout(function() {
 				self.onReceiveDataFromPi({

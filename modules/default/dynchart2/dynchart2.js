@@ -32,6 +32,9 @@ Module.register("dynchart2",{
     getDom: function() {
         var wrapper = document.createElement("div");
         this.ctx = document.createElement("canvas");
+        var textDiv = document.createElement("div");
+        textDiv.innerHTML= "<span class='bright medium'>Average time of Operations</span>"
+        wrapper.appendChild(textDiv);
         wrapper.appendChild(this.ctx);
         console.log("Moment", moment);
         console.log("Chart", Chart);
@@ -74,56 +77,73 @@ Module.register("dynchart2",{
         */
 
         //Line Chart Showing the different time variations in last 24 hrs
-        
+        Chart.defaults.global.defaultFontColor = "#ffffff";
          var myChart = new Chart(this.ctx,{
-         type: 'line',
-         data: {
-         labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15','16','17','18','19','20','21','22','23','24'],
-         datasets: [
-             {
-                 label: 'Car Start Time', //Door close time to elevator start time
-                 fill: false,
-                 lineTension: 0.1,
-                 data: [0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1,0.1, 0.1, 0.1, 0.1, 0.09, 0.095, 0.1,0.1, 0.1, 0.09, 0.1, 0.1, 0.1, 0.09,0.1, 0.1, 0.1],
-                 backgroundColor: "rgba(255,0,0,1)",
-                 borderColor: "rgba(255,0,0,1)"
-             },
-             {
-                 label: 'Brake to Brake Time', //Elevator Start to Elevator Stop on a one floor run
-                 fill: false,
-                 lineTension: 0.1,
-                 data: [4.9, 5, 4.7, 5, 5.4, 4.9, 5,5.1, 5.1, 5, 5, 4.9, 4.95, 5,5.1, 5, 4.9, 5, 5, 5, 4.9,6.1, 5, 5],
-                 backgroundColor: "rgba(255,255,0,1)",
-                 borderColor: "rgba(255,255,0,1)"
-             },
-             {
-                 label: 'Floor to Floor Time', //Elevator door close Start to Elevator door complete open on a one floor run
-                 fill: false,
-                 lineTension: 0.1,
-                 data: [6.9, 7, 6.7, 7, 7.3, 6.9, 7,7.1, 7.1, 7, 7, 6.9, 6.95, 7,7.1, 7, 6.9, 7, 7, 7, 6.9,7.3, 7, 7],
-                 backgroundColor: "rgba(100,200,0,1)",
-                 borderColor: "rgba(100,200,0,11)"
-             },
-             {
-                 label: 'Door Open Time',
-                 fill: false,
-                 lineTension: 0.1,
-                 data: [0.9, 0.8, 0.7, 0.5, 1.0, 0.9, 0.3,0.1, 0.1, 0.4, 0.2, 0.9, 0.95, 0.2,0.1, 0.2, 0.4, 0.4, 0.4, 0.4, 0.3,0.5, 0.4, 0.4],
-                 backgroundColor: "rgba(100,50,100,1)",
-                 borderColor: "rgba(100,50,100,1)"
-             }
-             ,
-             {
-                 label: 'Door Close Time',
-                 fill: false,
-                 lineTension: 0.1,
-                 data: [0.9, 0.6, 0.6, 0.5, 1.0, 0.9, 0.5,0.1, 0.1, 0.5, 0.5, 0.9, 0.95, 0.5,0.1, 0.5, 0.9, 0.5, 0.5, 0.5, 0.9,1.2, 0.5, 0.5],
-                 backgroundColor: "rgba(100,100,255,1)",
-                 borderColor: "rgba(100,100,255,1)"
-             }
-         ]
-         }
-         });
+            type: 'line',
+             data: {
+                 labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15','16','17','18','19','20','21','22','23','24'],
+                 datasets: [
+                     {  
+                         label: 'Car Start Time', //Door close time to elevator start time
+                         fill: false,
+                         lineTension: 0.1,
+                         data: [0.2, 0.1, 0.1, 0.1, 0.2, 0.1, 0.1,0.1, 0.1, 0.1, 0.1, 0.09, 0.095, 0.1,0.1, 0.1, 0.09, 0.1, 0.1, 0.1, 0.09,0.1, 0.1, 0.1],
+                         backgroundColor: "rgba(255,0,0,1)",
+                         borderColor: "rgba(255,0,0,1)"
+                     },
+                     {
+                         label: 'Brake to Brake Time', //Elevator Start to Elevator Stop on a one floor run
+                         fill: false,
+                         lineTension: 0.1,
+                         data: [4.9, 5, 4.7, 5, 5.4, 4.9, 5,5.1, 5.1, 5, 5, 4.9, 4.95, 5,5.1, 5, 4.9, 5, 5, 5, 4.9,6.1, 5, 5],
+                         backgroundColor: "rgba(255,255,0,1)",
+                         borderColor: "rgba(255,255,0,1)"
+                     },
+                     {
+                         label: 'Floor to Floor Time', //Elevator door close Start to Elevator door complete open on a one floor run
+                         fill: false,
+                         lineTension: 0.1,
+                         data: [6.9, 7, 6.7, 7, 7.3, 6.9, 7,7.1, 7.1, 7, 7, 6.9, 6.95, 7,7.1, 7, 6.9, 7, 7, 7, 6.9,7.3, 7, 7],
+                         backgroundColor: "rgba(100,200,0,1)",
+                         borderColor: "rgba(100,200,0,11)"
+                     },
+                     {
+                         label: 'Door Open Time',
+                         fill: false,
+                         lineTension: 0.1,
+                         data: [0.9, 0.8, 0.7, 0.5, 1.0, 0.9, 0.3,0.1, 0.1, 0.4, 0.2, 0.9, 0.95, 0.2,0.1, 0.2, 0.4, 0.4, 0.4, 0.4, 0.3,0.5, 0.4, 0.4],
+                         backgroundColor: "rgba(100,50,100,1)",
+                         borderColor: "rgba(100,50,100,1)"
+                     }
+                     ,
+                     {
+                         label: 'Door Close Time',
+                         fill: false,
+                         lineTension: 0.1,
+                         data: [0.9, 0.6, 0.6, 0.5, 1.0, 0.9, 0.5,0.1, 0.1, 0.5, 0.5, 0.9, 0.95, 0.5,0.1, 0.5, 0.9, 0.5, 0.5, 0.5, 0.9,1.2, 0.5, 0.5],
+                         backgroundColor: "rgba(100,100,255,1)",
+                         borderColor: "rgba(100,100,255,1)"
+                     }
+                 ]
+                },
+                 options: {
+                     scales: {
+                         yAxes: [{
+                             ticks: {
+                                 fontSize: 20,
+                                 fontColor: "#FFFFFF"
+                             }
+                         }],
+                         xAxes: [{
+                             ticks: {
+                                 fontSize: 20,
+                                 fontColor: "#FFFFFF"
+                             }
+                         }]
+                     }
+                 }
+
+                 });
         
 
         //Polar Area chart showing the amount of time in each action

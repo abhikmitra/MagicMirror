@@ -28,22 +28,12 @@ var config = {
 		},
 		{
 			module: 'dynchart',
-			position: "top_left",
+			position: "top_bar",
 		},
 
 		{
 			module: 'dynchart2',
-			position: "bottom_right",
-		},
-
-		{
-			module: 'dynchart3',
-			position: "bottom_left",
-		},
-
-		{
-			module: 'dynchart4',
-			position: "top_right",
+			position: "lower_third",
 		},
 		{
 			module: 'clock',

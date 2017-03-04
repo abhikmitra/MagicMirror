@@ -33,6 +33,25 @@ Module.register("clock",{
 	getStyles: function() {
 		return ["clock_styles.css"];
 	},
+	stopModule: function() {
+
+		this.hide(2000);
+	},
+	startModule: function() {
+
+		this.show(2000);
+	},
+	notificationReceived: function(notification, payload, sender) {
+
+		if (notification === "DEMO_3") {
+			console.log("stopping dynchart");
+			this.stopModule();
+		}
+		if (notification === "RESET") {
+			console.log("starting dynchart");
+			this.startModule();
+		}
+	},
 	// Define start sequence.
 	start: function() {
 		Log.info("Starting module: " + this.name);

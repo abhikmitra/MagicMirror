@@ -199,9 +199,20 @@ Module.register("currentweather",{
 
 		return this.data.header;
 	},
+	
 
 	// Override notification handler.
 	notificationReceived: function(notification, payload, sender) {
+
+		if (notification === "DEMO_3") {
+			console.log("stopping weather");
+			this.stopModule();
+		}
+		if (notification === "RESET") {
+			console.log("starting weather");
+			this.startModule();
+		}
+
 		if (notification === "DOM_OBJECTS_CREATED") {
 			if (this.config.appendLocationNameToHeader) {
 				this.hide(0, {lockString: this.identifier});
@@ -420,6 +431,14 @@ Module.register("currentweather",{
 		} else {
 			return "N";
 		}
+	},
+	stopModule: function() {
+
+		this.hide(2000);
+	},
+	startModule: function() {
+
+		this.show(2000);
 	},
 
 	/* function(temperature)

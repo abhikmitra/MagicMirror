@@ -31,12 +31,15 @@ Module.register("dynchart",{
     // Override dom generator.
     getDom: function(){
         var wrapper = document.createElement("div");
+        var textDiv = document.createElement("div");
+        textDiv.innerHTML= "<span class='bright medium'>Average Motor Temperature</span>"
+        wrapper.appendChild(textDiv);
         this.ctx = document.createElement("canvas");
         wrapper.appendChild(this.ctx);
         console.log("Moment", moment);
         console.log("Chart", Chart);
         //Line Chart Showing the Average motor temperature over the last 24 hrs
-        
+        Chart.defaults.global.defaultFontColor = "#ffffff";
          var myChart = new Chart(this.ctx,{
          type: 'line',
          data: {
@@ -49,7 +52,24 @@ Module.register("dynchart",{
          backgroundColor: "rgba(255,0,0,1)",
          borderColor: "rgba(255,0,0,1)"
          }]
-         }
+         },
+             options: {
+                 scales: {
+                     yAxes: [{
+                         ticks: {
+                             fontSize: 20,
+                             fontColor: "#FFFFFF"
+                         }
+                     }],
+                     xAxes: [{
+                         ticks: {
+                             fontSize: 20,
+                             fontColor: "#FFFFFF"
+                         }
+                     }]
+                 }
+             }
+
          });
          
         return wrapper;
