@@ -1,6 +1,7 @@
 var NodeHelper = require("node_helper");
 var dgram = require('dgram');
 var server = dgram.createSocket('udp4');
+var http = require("https");
 var detectedPeople = [
 	"SHABAZ",
 	"NIKHIL",
@@ -16,17 +17,17 @@ module.exports = NodeHelper.create({
 			var self = this;
 			//return;
 
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "DEMO_3",
-				})
-			}, 10000);
-
-			setTimeout(function() {
-				self.onReceiveDataFromPi({
-					TYPE: "RESET",
-				})
-			}, 20000);
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "DEMO_3",
+			// 	})
+			// }, 10000);
+            //
+			// setTimeout(function() {
+			// 	self.onReceiveDataFromPi({
+			// 		TYPE: "RESET",
+			// 	})
+			// }, 20000);
 
 			return;
 			setTimeout(function() {
@@ -128,6 +129,58 @@ module.exports = NodeHelper.create({
 			this.sendSocketNotification("DEMO_3", {
 
 			});
+		}
+
+		if (message.type == "UPDATE_CURRENT_FLOOR") {
+			// switch on the mirror
+			console.log("updating current floor")
+			this.sendSocketNotification("UPDATE_CURRENT_FLOOR", {
+					payload: message.floor
+			});
+		}
+
+		if (message.TYPE == "CALL_ELEVATOR") {
+			// switch on the mirror
+			console.log("calling elevator", message.PAYLOAD);
+
+
+			var options = {
+				"method": "POST",
+				"hostname": "api.kone.com",
+				"port": null,
+				"path": "/api/building/1000000596/call",
+				"headers": {
+					"accept": "application/vnd.collection+json",
+					"content-type": "application/vnd.collection+json",
+					"x-ibm-client-id": "6b232b94-4dfb-48b2-9088-f5f3abdf75d4",
+					"x-ibm-client-secret": "aC4rU6xS0nY5fB2hM2lO2hC5eK7yQ8lY7fM2wS7tY1yE0xT4kR",
+					"cache-control": "no-cache",
+					"postman-token": "697eea0e-b91d-774e-af85-513d96357a0f"
+				}
+			};
+
+			var req = http.request(options, function (res) {
+				var chunks = [];
+
+				res.on("data", function (chunk) {
+					chunks.push(chunk);
+				});
+
+				res.on("end", function () {
+					var body = Buffer.concat(chunks);
+					console.log("response to call", body.toString());
+				});
+			});
+
+			req.write("{\n  \"template\": {\n    \"data\": [\n      {\"name\":\"sourceAreaId\", \"value\": \"area:1000000596:1000\"},\n      {\"name\":\"destinationAreaId\", \"value\": \"" + message.PAYLOAD + "\"}\n    ]\n  }\n}");
+			req.end();
+
+
+
+
+
+
+
 		}
 
 		if (message.TYPE == "RESET") {

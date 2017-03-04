@@ -8,11 +8,13 @@
     box-sizing: border-box;
     padding: 14px 0 0 0;
     margin: 0 7px 10px 7px;
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff;
     cursor: pointer;
 }
 .currentFloor {
-    border: 1px solid #D32E2E;
+    border: 3px solid #69F0AE;
+    color: #ffffff !important;
+
 }
 
 .wrapper_floor {

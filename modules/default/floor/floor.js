@@ -16,7 +16,7 @@ Module.register("floor", {
             this.floors = [];
         }
 
-        for(var i = 0;i<10;i++) {
+        for(var i = 1;i<=10;i++) {
             var isPresent = false;
             for (var k = 0 ; k< this.floors.length ;k++) {
                 if (this.floors[k] == i) {
@@ -28,7 +28,7 @@ Module.register("floor", {
             if (isPresent) {
                 cls  = 'class="key bright medium bold';
             } else {
-                cls = 'class="dimmed key medium thin';
+                cls = 'class="key medium thin';
             }
 
             if(this.currentFloor == i) {
@@ -65,9 +65,9 @@ Module.register("floor", {
 
         }
 
-        if (notification == "UPDATE_CURRENT_LEVEL") {
+        if (notification == "UPDATE_CURRENT_FLOOR") {
 
-            this.currentFloor = payload.currentFloor;
+            this.currentFloor = payload.payload;
             this.updateDom();
 
         }

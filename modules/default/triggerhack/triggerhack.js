@@ -15,7 +15,7 @@ Module.register("triggerhack",{
 	start: function() {
 		Log.log("Starting module: " + this.name);
 		this.sendSocketNotification("LISTEN_SOCKET", {
-			ip: "172.31.176.242",
+			ip: "172.31.18.248",
 			port:"5006"
 		});
 
@@ -77,6 +77,12 @@ Module.register("triggerhack",{
 		if (notification === "DEMO_2") {
 			this.sendNotification("DEMO_2", {
 
+			});
+		}
+
+		if (notification === "UPDATE_CURRENT_FLOOR") {
+			this.sendNotification("UPDATE_CURRENT_FLOOR", {
+				payload: payload.payload
 			});
 		}
 
